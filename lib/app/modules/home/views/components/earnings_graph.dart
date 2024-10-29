@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:ticker_assign/app/data/models/earnings_model.dart';
+import 'package:ticker_assign/app/modules/shared/constants.dart';
 
 class EarningsGraph extends StatelessWidget {
   final List<EarningsData> data;
@@ -33,9 +34,9 @@ class EarningsGraph extends StatelessWidget {
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _LegendItem(color: Colors.blue, label: 'Estimated EPS'),
+                _LegendItem(color: AppConstants.legendItemColor1, label: 'Estimated EPS'),
                 SizedBox(width: 20),
-                _LegendItem(color: Colors.red, label: 'Actual EPS'),
+                _LegendItem(color: AppConstants.legendItemColor2, label: 'Actual EPS'),
               ],
             ),
           ),
@@ -51,7 +52,7 @@ class EarningsGraph extends StatelessWidget {
                     spots: sortedData.asMap().entries.map((entry) {
                       return FlSpot(entry.key.toDouble(), entry.value.estimatedEPS);
                     }).toList(),
-                    color: Colors.blue,
+                    color: AppConstants.legendItemColor1,
                     dotData: const FlDotData(show: true),
                     isCurved: true,
                   ),
@@ -60,7 +61,7 @@ class EarningsGraph extends StatelessWidget {
                     spots: sortedData.asMap().entries.map((entry) {
                       return FlSpot(entry.key.toDouble(), entry.value.actualEPS);
                     }).toList(),
-                    color: Colors.red,
+                    color: AppConstants.legendItemColor2,
                     dotData: const FlDotData(show: true),
                     isCurved: true,
                   ),
@@ -120,11 +121,11 @@ class EarningsGraph extends StatelessWidget {
                 ),
                 borderData: FlBorderData(
                   show: true,
-                  border: Border.all(color: Colors.grey.shade300),
+                  border: Border.all(color: AppConstants.borderColor),
                 ),
                 lineTouchData: LineTouchData(
                   touchTooltipData: LineTouchTooltipData(
-                    tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
+                    tooltipBgColor: AppConstants.blueGrey.withOpacity(0.8),
                     getTooltipItems: (List<LineBarSpot> touchedSpots) {
                       return touchedSpots.map((spot) {
                         final data = sortedData[spot.x.toInt()];
@@ -132,21 +133,21 @@ class EarningsGraph extends StatelessWidget {
                         return LineTooltipItem(
                           '${dateFormat.format(data.date)}\n',
                           const TextStyle(
-                            color: Colors.white,
+                            color: AppConstants.overlayTextColor,
                             fontWeight: FontWeight.bold,
                           ),
                           children: [
                             TextSpan(
                               text: '${isEstimated ? "Estimated" : "Actual"} EPS: \$${spot.y.toStringAsFixed(2)}\n',
                               style: TextStyle(
-                                color: isEstimated ? Colors.blue : Colors.red,
+                                color: isEstimated ? AppConstants.legendItemColor1 : AppConstants.legendItemColor2,
                                 fontSize: 12,
                               ),
                             ),
                             TextSpan(
                               text: '${isEstimated ? "Estimated" : "Actual"} Revenue: \$${NumberFormat.compact().format(isEstimated ? data.estimatedRevenue : data.actualRevenue)}',
                               style: const TextStyle(
-                                color: Colors.white,
+                                color: AppConstants.overlayTextColor,
                                 fontSize: 12,
                               ),
                             ),

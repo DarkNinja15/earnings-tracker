@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ticker_assign/app/modules/home/controller/transcript_controller.dart';
+import 'package:ticker_assign/app/modules/shared/constants.dart';
+import 'package:ticker_assign/app/modules/shared/widgets/loading_widget.dart';
 
 class TranscriptView extends GetView<TranscriptController> {
   const TranscriptView({super.key});
@@ -8,13 +10,21 @@ class TranscriptView extends GetView<TranscriptController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppConstants.backgroundColor,
       appBar: AppBar(
-        title: Text('${Get.arguments['ticker']} Earnings Transcript'),
-        backgroundColor: Colors.blue,
+        title: Text('${Get.arguments['ticker']} Earnings Transcript', style: const TextStyle(
+          color: AppConstants.lightTextColor,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),),
+        backgroundColor: AppConstants.primaryColor,
+        leading: IconButton(onPressed: (){
+          Get.back();
+        }, icon: const Icon(Icons.arrow_back_ios_new,color: AppConstants.appBarIconsColor,)),
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: Loader());
         }
         
         if (controller.error.value.isNotEmpty) {
@@ -24,7 +34,7 @@ class TranscriptView extends GetView<TranscriptController> {
               children: [
                 Text(
                   controller.error.value,
-                  style: const TextStyle(color: Colors.red),
+                  style: const TextStyle(color: AppConstants.errorColor),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 16),
@@ -48,6 +58,7 @@ class TranscriptView extends GetView<TranscriptController> {
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
+                textAlign: TextAlign.justify,
               ),
               const SizedBox(height: 16),
               Text(
@@ -56,6 +67,7 @@ class TranscriptView extends GetView<TranscriptController> {
                   fontSize: 16,
                   height: 1.5,
                 ),
+                textAlign: TextAlign.justify,
               ),
             ],
           ),
