@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:ticker_assign/app/data/models/earnings_model.dart';
 
@@ -155,6 +156,25 @@ class EarningsGraph extends StatelessWidget {
                     },
                   ),
                   handleBuiltInTouches: true,
+                  touchCallback: (FlTouchEvent event, LineTouchResponse? response) {
+                    if (event is FlTapUpEvent && response?.lineBarSpots != null && response!.lineBarSpots!.isNotEmpty) {
+                      final spotIndex = response.lineBarSpots!.first.x.toInt();
+                      if (spotIndex >= 0 && spotIndex < sortedData.length) {
+                        final selectedData = sortedData[spotIndex];
+                        final quarter = _getQuarter(selectedData.date);
+                        final year = selectedData.date.year;
+                        
+                        Get.toNamed(
+                          '/transcript',
+                          arguments: {
+                            'ticker': selectedData.ticker,
+                            'year': year,
+                            'quarter': quarter,
+                          },
+                        );
+                      }
+                    }
+                  },
                 ),
               ),
             ),
@@ -162,6 +182,10 @@ class EarningsGraph extends StatelessWidget {
         ],
       ),
     );
+  }
+  
+  _getQuarter(DateTime date) {
+    return (date.month / 3).ceil();
   }
 }
 

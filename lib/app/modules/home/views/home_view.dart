@@ -7,6 +7,8 @@ import 'components/transcript_view.dart';
 class HomeView extends GetView<HomeController> {
   final TextEditingController _tickerController = TextEditingController();
 
+  HomeView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,9 +48,7 @@ class HomeView extends GetView<HomeController> {
             }),
             Obx(() {
               if (controller.selectedTranscript.value != null) {
-                return TranscriptView(
-                  transcript: controller.selectedTranscript.value!,
-                );
+                return const TranscriptView();
               }
               return const SizedBox();
             }),

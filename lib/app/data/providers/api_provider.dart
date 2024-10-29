@@ -6,12 +6,10 @@ import 'package:ticker_assign/app/data/models/transcript_model.dart';
 
 class ApiProvider {
   static const String baseUrl = 'https://api.api-ninjas.com/v1';
-  static const String apiKey = 'YOUR_API_KEY';
 
   Future<List<EarningsData>> getEarningsData(String symbol) async {
     final response = await http.get(
       Uri.parse('$baseUrl/earningscalendar?ticker=$symbol'),
-      headers: {'X-Api-Key': apiKey},
     );
 
     if (response.statusCode == 200) {
@@ -22,24 +20,9 @@ class ApiProvider {
     }
   }
 
-  // Future<TranscriptData> getTranscript(String symbol, DateTime date) async {
-  //   final response = await http.get(
-  //     Uri.parse('$baseUrl/earningscalltranscript?symbol=$symbol&date=${date.toIso8601String()}'),
-  //     headers: {'X-Api-Key': apiKey},
-  //   );
-
-  //   if (response.statusCode == 200) {
-  //     Map<String, dynamic> jsonData = json.decode(response.body);
-  //     return TranscriptData.fromJson(jsonData);
-  //   } else {
-  //     throw Exception('Failed to load transcript data');
-  //   }
-  // }
-
-  Future<TranscriptData> getTranscript(String ticker, String date) async {
+  Future<TranscriptData> getTranscript(String ticker, int year, int quarter) async {
     final response = await http.get(
-      Uri.parse('$baseUrl/earningscalltranscript?ticker=$ticker&date=$date'),
-      headers: {'X-Api-Key': apiKey},
+      Uri.parse('$baseUrl/earningstranscript?ticker=$ticker&year=$year&quarter=$quarter'),
     );
 
     if (response.statusCode == 200) {

@@ -24,15 +24,4 @@ class HomeController extends GetxController {
       isLoading.value = false;
     }
   }
-
-  Future<void> fetchTranscript(DateTime date) async {
-    try {
-      isLoading.value = true;
-      selectedTranscript.value = await repository.getTranscript(symbol.value, date);
-    } catch (e) {
-      Get.snackbar('Error', 'Failed to fetch transcript');
-    } finally {
-      isLoading.value = false;
-    }
-  }
 }

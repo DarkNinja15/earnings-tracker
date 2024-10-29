@@ -10,6 +10,6 @@ class EarningsRepository {
   Future<List<EarningsData>> getEarningsData(String symbol) =>
       apiProvider.getEarningsData(symbol);
 
-  Future<TranscriptData> getTranscript(String symbol, DateTime date) =>
-      apiProvider.getTranscript(symbol, date.toString());
+  Future<TranscriptData> getTranscript(String symbol, int year, int quarter) =>
+      apiProvider.getTranscript(symbol, year, quarter);
 }
