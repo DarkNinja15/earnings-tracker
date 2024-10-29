@@ -6,6 +6,8 @@ import 'package:ticker_assign/app/bindings/transcript_bindings.dart';
 import 'package:ticker_assign/app/modules/home/views/components/transcript_view.dart';
 import 'package:ticker_assign/app/modules/home/views/home_view.dart';
 
+
+/// A class that defines the routes for the app.
 class AppPages {
   static const INITIAL = Routes.HOME;
 

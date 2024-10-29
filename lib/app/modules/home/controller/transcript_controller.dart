@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import '../../../data/models/transcript_model.dart';
 import '../../../data/repositories/earnings_repository.dart';
 
+/// A controller for the transcript view.
 class TranscriptController extends GetxController {
   final EarningsRepository repository;
   final transcript = Rx<TranscriptData>(TranscriptData(transcript: ''));

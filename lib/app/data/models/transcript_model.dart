@@ -1,3 +1,4 @@
+/// Transcript model
 class TranscriptData {
   final String transcript;
 

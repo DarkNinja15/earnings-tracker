@@ -2,6 +2,7 @@ import 'package:ticker_assign/app/data/models/earnings_model.dart';
 import 'package:ticker_assign/app/data/models/transcript_model.dart';
 import 'package:ticker_assign/app/data/providers/api_provider.dart';
 
+/// A repository class for fetching earnings data.
 class EarningsRepository {
   final ApiProvider apiProvider;
 

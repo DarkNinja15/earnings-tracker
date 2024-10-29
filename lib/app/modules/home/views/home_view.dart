@@ -4,8 +4,8 @@ import 'package:ticker_assign/app/modules/home/controller/home_controller.dart';
 import 'package:ticker_assign/app/modules/shared/constants.dart';
 import 'package:ticker_assign/app/modules/shared/widgets/loading_widget.dart';
 import 'components/earnings_graph.dart';
-import 'components/transcript_view.dart';
 
+// This is the view for the home screen. It displays a search box to enter the company ticker and a button to search for earnings data.
 class HomeView extends GetView<HomeController> {
   final TextEditingController _tickerController = TextEditingController();
 
@@ -30,6 +30,7 @@ class HomeView extends GetView<HomeController> {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
+              // Search box
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
@@ -56,6 +57,8 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
               const SizedBox(height: 24),
+
+              // Search button
               ElevatedButton(
                 onPressed: () {
                   FocusScope.of(context).requestFocus(FocusNode()); // hide keyboard
@@ -80,6 +83,8 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
               const SizedBox(height: 24),
+
+              // Earnings graph
               Obx(() {
                 if (controller.isLoading.value) {
                   return const Center(child: Loader());
@@ -100,12 +105,6 @@ class HomeView extends GetView<HomeController> {
                       )
                       : EarningsGraph(data: controller.earningsData),
                 );
-              }),
-              Obx(() {
-                if (controller.selectedTranscript.value != null) {
-                  return const TranscriptView();
-                }
-                return const SizedBox();
               }),
             ],
           ),

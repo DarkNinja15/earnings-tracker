@@ -4,6 +4,7 @@ import 'package:ticker_assign/app/modules/home/controller/transcript_controller.
 import 'package:ticker_assign/app/modules/shared/constants.dart';
 import 'package:ticker_assign/app/modules/shared/widgets/loading_widget.dart';
 
+// This is the view for the transcript screen. It displays the earnings transcript for a company.
 class TranscriptView extends GetView<TranscriptController> {
   const TranscriptView({super.key});
 
@@ -22,6 +23,8 @@ class TranscriptView extends GetView<TranscriptController> {
           Get.back();
         }, icon: const Icon(Icons.arrow_back_ios_new,color: AppConstants.appBarIconsColor,)),
       ),
+      
+      // This is the body of the transcript screen. It displays the earnings transcript for a company.
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(child: Loader());

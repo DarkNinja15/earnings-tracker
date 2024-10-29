@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// A class that contains the app's constants.
 class AppConstants{
   // colors
   static const Color primaryColor = Color(0xFF0D47A1);

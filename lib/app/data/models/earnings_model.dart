@@ -1,3 +1,4 @@
+/// EarningsData model
 class EarningsData {
   final String pricedate;
   final String ticker;

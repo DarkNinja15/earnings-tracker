@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:ticker_assign/app/data/models/earnings_model.dart';
 import 'package:ticker_assign/app/modules/shared/constants.dart';
 
+// This is a widget that displays a graph of earnings data.
 class EarningsGraph extends StatelessWidget {
   final List<EarningsData> data;
 
@@ -47,6 +48,7 @@ class EarningsGraph extends StatelessWidget {
                 minY: minEPS - epsInterval,
                 maxY: maxEPS + epsInterval,
                 lineBarsData: [
+                  
                   // Estimated EPS Line
                   LineChartBarData(
                     spots: sortedData.asMap().entries.map((entry) {
@@ -56,6 +58,7 @@ class EarningsGraph extends StatelessWidget {
                     dotData: const FlDotData(show: true),
                     isCurved: true,
                   ),
+
                   // Actual EPS Line
                   LineChartBarData(
                     spots: sortedData.asMap().entries.map((entry) {

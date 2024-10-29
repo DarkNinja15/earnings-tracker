@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.light,
       defaultTransition: Transition.fade,
       getPages: AppPages.routes,
-      initialRoute: AppPages.INITIAL,
+      initialRoute: AppPages.INITIAL, // HomeView (entry point)
     );
   }
 }
