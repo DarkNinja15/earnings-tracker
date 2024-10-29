@@ -70,7 +70,7 @@ flutter pub get
 flutter run
 ```
 
-## API Integration
+## 🔌 API Integration
 
 The application uses two API endpoints from API Ninjas:
 
